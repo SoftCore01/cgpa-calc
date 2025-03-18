@@ -126,7 +126,7 @@ function App() {
     <>
       <header>
         <a href="#" className="header-link">
-          <h2>CGPA Calculator</h2>
+          <h2> 5 Point CGPA Calculator</h2>
         </a>
       </header>
       <main>
