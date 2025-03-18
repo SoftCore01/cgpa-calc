@@ -10,10 +10,10 @@ import { CourseObject, calculateCGPA, calculateGPA } from "./utils";
 
 function App() {
   const [activeSemesterID, setActiveSemester] = useState(0);
-  const [years, setYears] = useState(5);
-  const [system, setSystem] = useState(5);
-  const [semesters, setSemesters] = useState(new Array(years*2).fill({courses: [new CourseObject("", 0, 5)]}));
+
+  const [semesters, setSemesters] = useState(new Array(10).fill({courses: [new CourseObject("", 0, 5)]}));
   const localStorageKey = "results";
+
   useEffect(() => {
     let results = localStorage.getItem(localStorageKey);
     if (results !== null) {
@@ -21,7 +21,7 @@ function App() {
       results = JSON.parse(results);
     } else if (results === null || results.length < 0) {
     /* If not create a new semester variable and pass it to results */
-      results = [ new Array(years*2).fill({courses: [new CourseObject("", 0, 5)]})];
+      results = [ new Array(10).fill({courses: [new CourseObject("", 0, 5)]})];
     }
 
     /* Pass results update semesters array with value of results */
@@ -122,31 +122,16 @@ function App() {
   const cgpa = calculateCGPA(semesters)
   const gpa = calculateGPA(semesters, activeSemesterID)
 
-
   return (
     <>
       <header>
         <a href="#" className="header-link">
           <h2>CGPA Calculator</h2>
         </a>
-        <div className="options">
-          <Dropdown
-            setSelected={setYears}
-            selected={years}
-            type={"Years"}
-            text={"Duration of study"}
-          />
-          <Dropdown
-            setSelected={setSystem}
-            selected={system}
-            type={"Points"}
-            text={"Choose a GPA system"}
-          />
-        </div>
       </header>
       <main>
         <div className="progress-container">
-          <Progressbar value={gpa} textInfo={"GPA"} />
+          <Progressbar  value={gpa} textInfo={"GPA"} />
           <Progressbar value={cgpa.CGPA} textInfo={"CGPA"} />
         </div>
         <div className="semester-results">
@@ -169,7 +154,6 @@ function App() {
         </div>
           {semesters.length > 0 && (
             <Semester
-              system={system}
               courses={semesters[activeSemesterID].courses}
               id={activeSemesterID}
               addCourse={addCourse}

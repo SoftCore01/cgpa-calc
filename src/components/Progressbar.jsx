@@ -1,7 +1,7 @@
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-export default function Progressbar({ value, textInfo }) {
+export default function Progressbar({ value, textInfo}) {
   let value_int = (value / 5) * 100;  
   return (
       <div className="progressbar-container">
