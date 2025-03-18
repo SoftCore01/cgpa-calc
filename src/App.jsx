@@ -21,7 +21,7 @@ function App() {
       results = JSON.parse(results);
     } else if (results === null || results.length < 0) {
     /* If not create a new semester variable and pass it to results */
-      results = [{ courses: [new CourseObject("", 0, 5)] }];
+      results = [ new Array(years*2).fill({courses: [new CourseObject("", 0, 5)]})];
     }
 
     /* Pass results update semesters array with value of results */
@@ -169,6 +169,7 @@ function App() {
         </div>
           {semesters.length > 0 && (
             <Semester
+              system={system}
               courses={semesters[activeSemesterID].courses}
               id={activeSemesterID}
               addCourse={addCourse}

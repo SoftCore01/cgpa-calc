@@ -44,6 +44,7 @@ function Semester(props) {
                 key={index}
                 id={index}
                 course={course}
+                system={props.system}
                 handleCourseTitleChange={(title) =>
                   props.handleCourseTitleChange(props.id, index, title)
                 }
